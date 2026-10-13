@@ -136,7 +136,7 @@ export function Navbar() {
           />
           <div
             id="mobile-menu"
-            className="absolute top-[72px] right-0 z-40 flex h-[400px] w-full max-w-[375px] flex-col justify-between bg-white p-4 shadow-[0_12px_24px_rgb(0_0_0/0.08)] lg:hidden"
+            className="absolute top-[72px] right-0 z-40 flex min-h-[400px] w-full max-w-[375px] flex-col justify-between gap-6 bg-white p-4 shadow-[0_12px_24px_rgb(0_0_0/0.08)] lg:hidden"
           >
             <nav aria-label="Mobile" className="flex flex-col gap-2">
               {NAV_LINKS.map((l) => (

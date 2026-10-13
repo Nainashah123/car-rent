@@ -44,19 +44,29 @@ Figma "Preview screen" (`232:32229`, Component page) holds every screen: **10 de
 
 | Route | Desktop frame | Mobile frame | Status |
 |---|---|---|---|
-| `/` Home | 232:21757 | 232:22155 | in progress |
+| `/` Home | 232:21757 | 232:22155 | built |
 | `/login` | 233:42114 | 233:42822 | built |
 | `/signup` (Fill / Error states) | 232:26106 | 232:26396 / 232:28389 | built |
-| `/cars` Search (Find a car) | 233:43662 | 233:46579 | in progress |
-| `/cars/[slug]` Detail/Description | 232:22751 | 232:22813 | in progress |
-| `/profile` Profile/Default (`?tab=active\|history`) | 233:41637 | 233:42393 | in progress |
-| `/blog` | 233:49208 (also 232:26926) | 233:50031 / 232:28118 | in progress |
-| `/blog/[slug]` Detail blog | 232:27331 | 233:49767 | in progress |
-| `/contact` Contact us/Fill | 233:46026 | 233:48232 | in progress |
-| `/promo` | — (Navbar "Promo" variant; Search layout filtered to promo cars) | — | in progress |
-| `/about` | — (built from components: Header about us 139:10449, Vision & Mission 139:10580, FAQs 139:10838) | — | in progress |
-| `/help` | — (FAQs 139:10838 + contact links) | — | in progress |
-| `/privacy`, `/terms` | — (footer links; text pages in the design's type styles) | — | in progress |
+| `/cars` Search (Find a car) | 233:43662 | 233:46579 | built |
+| `/cars/[slug]` Detail/Description | 232:22751 | 232:22813 | built |
+| `/profile` Profile/Default (`?tab=active\|history`) | 233:41637 | 233:42393 | built |
+| `/blog` | 233:49208 (also 232:26926) | 233:50031 / 232:28118 | built |
+| `/blog/[slug]` Detail blog | 232:27331 | 233:49767 | built |
+| `/contact` Contact us/Fill | 233:46026 | 233:48232 | built |
+| `/promo` | — (Navbar "Promo" variant; Search layout filtered to promo cars) | — | built |
+| `/about` | — (built from components: Header about us 139:10449, Vision & Mission 139:10580, FAQs 139:10838) | — | built |
+| `/help` | — (FAQs 139:10838 + contact links) | — | built |
+| `/privacy`, `/terms` | — (footer links; text pages in the design's type styles) | — | built |
+
+## QA results (2026-10-13)
+
+- `npm run lint`, `npx tsc --noEmit`, `npm run build` (51 static/PPR pages): clean.
+- `dead_buttons.py src`: prints nothing. No `figma.com/api` URLs in `src`.
+- `scripts/qa/crawl.mjs`: 45 unique internal links, 0 broken, 0 console errors. `/help` is reached via the navbar Help center dropdown + mobile menu.
+- `scripts/qa/qa.mjs audit` on all 17 routes at 390 + 768: clean (no sideways scroll, all tap targets 44px).
+- `scripts/qa/auth-flow.mjs`: login + sign-up empty / invalid / valid → `/profile`.
+- Desktop geometry vs Figma at 1440 (main containers): auth ≤0.2px, detail ≤1px, profile ≤0.2px, search ≤2.6px, blog ≤1.2px, contact ≤1.4px, home ≤3.1px (accumulated from the Fraunces/New Kansas substitution).
+- Unknown `/cars/*` and `/blog/*` slugs return HTTP 404 (`instant = false` + `notFound()` before render).
 
 ## Navigation map
 

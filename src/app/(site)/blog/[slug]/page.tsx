@@ -8,6 +8,9 @@ import { ShareBar } from "@/components/blog/ShareBar";
 import { ButtonLink } from "@/components/ui/Button";
 import { ALL_POSTS, postBySlug, relatedPosts, sectionId, type BlogPost } from "@/data/blog";
 
+/** Known slugs are prerendered; the slug check blocks so unknown ones get a 404 status. */
+export const instant = false;
+
 export function generateStaticParams() {
   return ALL_POSTS.map((p) => ({ slug: p.slug }));
 }

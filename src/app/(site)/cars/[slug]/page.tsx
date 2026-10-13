@@ -4,6 +4,9 @@ import { CarDetailView } from "@/components/detail/CarDetailView";
 import { detailFor } from "@/data/carDetails";
 import { CARS, carBySlug } from "@/data/cars";
 
+/** Known slugs are prerendered; the slug check blocks so unknown ones get a 404 status. */
+export const instant = false;
+
 export function generateStaticParams() {
   return CARS.map((c) => ({ slug: c.slug }));
 }

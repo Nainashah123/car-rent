@@ -18,6 +18,12 @@ async function open(path, width, height = 1024) {
   const p = path.startsWith("/") ? path : "/" + path;
   await page.goto(BASE + p, { waitUntil: "networkidle", timeout: 60000 });
   await page.evaluate(() => document.fonts.ready);
+  // Scroll through so lazy images load before measuring / full-page shots.
+  await page.evaluate(async () => {
+    for (let y = 0; y < document.body.scrollHeight; y += 600) { scrollTo(0, y); await new Promise((r) => setTimeout(r, 60)); }
+    scrollTo(0, 0);
+  });
+  await page.waitForLoadState("networkidle");
   await page.waitForTimeout(400);
   return { page, errors };
 }
