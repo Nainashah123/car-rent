@@ -25,6 +25,13 @@
   --primary-600: #ce2e4a;
   --danger: #f33636;
   --ink-top: #2d2d2d;
+  --ink: #111111;
+  --card-stroke: #e0e0e0;
+  --success-50: #e6fae8;
+  --success-600: #288c34;
+  --warning-50: #fcf7e5;
+  --warning-600: #d99338;
+  --danger-50: #f6e7e7;
 }
 
 @theme inline {
@@ -47,6 +54,13 @@
   --color-primary-600: var(--primary-600);
   --color-danger: var(--danger);
   --color-ink-top: var(--ink-top);
+  --color-ink: var(--ink);
+  --color-card-stroke: var(--card-stroke);
+  --color-success-50: var(--success-50);
+  --color-success-600: var(--success-600);
+  --color-warning-50: var(--warning-50);
+  --color-warning-600: var(--warning-600);
+  --color-danger-50: var(--danger-50);
 
   /* Aliases used by the scaffold's Toaster / MoreMenu */
   --color-surface: var(--white);
