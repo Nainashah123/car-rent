@@ -24,3 +24,116 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/*
+ * Starter tokens used by the scaffold's shared components (Toaster, MoreMenu).
+ * Replace every value with the Figma variables (get_variable_defs) before
+ * building screens. Values read via var() must also be declared on :root.
+ */
+@theme inline {
+  --color-surface: #ffffff;
+  --color-surface-neutral: #f5f7fa;
+  --color-surface-neutral-2: #eaecf0;
+  --color-text-primary: #0e121b;
+  --color-text-secondary: #525866;
+  --color-text-tertiary: #99a0ad;
+  --color-stroke-primary: #dbe0e9;
+  --color-brand: #3559e9;
+  --color-brand-light: #c0d5ff;
+  --color-accent-lighter: #ebf1ff;
+  --color-information: #178c4e;
+  --color-information-light: #c2f5da;
+  --color-information-lighter: #d6f5e8;
+  --color-error: #de4400;
+  --color-error-light: #f5c5b0;
+  --color-error-lighter: #fcece6;
+  --shadow-field: 0 1px 2px 0 rgb(10 13 20 / 0.05);
+}
+
+/*
+ * Touch targets. Below lg (and on any touch-first pointer) every control's
+ * hit area grows to at least 44 x 44 without changing what is drawn: an
+ * invisible ::after centred on the control. Desktop with a mouse is left
+ * pixel-exact to Figma.
+ */
+@media (max-width: 1023.98px), (pointer: coarse) {
+  :where(
+      button,
+      a[href],
+      summary,
+      [role="button"],
+      [role="tab"],
+      [role="radio"],
+      [role="option"],
+      [role="menuitem"],
+      [role="switch"],
+      label:has(> input[type="checkbox"]),
+      label:has(> input[type="radio"])
+    ):not(.absolute, .fixed, .sticky, .sr-only) {
+    position: relative;
+  }
+
+  :where(
+      button,
+      a[href],
+      summary,
+      [role="button"],
+      [role="tab"],
+      [role="radio"],
+      [role="option"],
+      [role="menuitem"],
+      [role="switch"],
+      label:has(> input[type="checkbox"]),
+      label:has(> input[type="radio"])
+    ):not(.sr-only)::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100%, 44px);
+    height: max(100%, 44px);
+    transform: translate(-50%, -50%);
+  }
+
+  /*
+   * The ::after above is clipped wherever a control or its scroller has
+   * overflow hidden, so block-level controls also get a real 44px minimum.
+   * Mark a control data-tap="exempt" where that would break its layout
+   * (chart bars), or data-tap="height" to keep its drawn width (grid cells).
+   */
+  :where(button, [role="tab"], a.flex, a.inline-flex, a.block, a.grid):not(
+      [data-tap="exempt"],
+      .sr-only
+    ) {
+    min-height: 44px;
+  }
+  :where(button, [role="tab"], a.flex, a.inline-flex, a.block, a.grid):not(
+      [data-tap="exempt"],
+      [data-tap="height"],
+      .sr-only
+    ) {
+    min-width: 44px;
+  }
+  label:has(> input[type="checkbox"]),
+  label:has(> input[type="radio"]) {
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Custom checkboxes draw a 20px box over an invisible native input. */
+  span > input[type="checkbox"].absolute {
+    inset: -12px;
+  }
+
+  /* Text fields: the field itself has to be tall enough to tap. */
+  :where(div, label):has(> input:not([type="checkbox"], [type="radio"], [type="file"], [hidden])),
+  :where(div, label):has(> select),
+  :where(div, label):has(> textarea[rows="1"]) {
+    min-height: 44px;
+  }
+  input:not([type="checkbox"], [type="radio"], [type="file"], [hidden]):not(:where(div, label) > input) {
+    min-height: 44px;
+  }
+}
