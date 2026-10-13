@@ -1,53 +1,101 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 /*
- * Starter tokens used by the scaffold's shared components (Toaster, MoreMenu).
- * Replace every value with the Figma variables (get_variable_defs) before
- * building screens. Values read via var() must also be declared on :root.
+ * Figma variables (file B5ENtxw4u0iQpz6jfrje1z). Raw values live on :root so
+ * TS/inline styles can read them with var(); @theme maps them to utilities.
+ * One custom property per line (Tailwind drops multi-line values).
  */
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --base-black: #010101;
+  --neutral-50: #f6f6f6;
+  --neutral-100: #ededed;
+  --neutral-200: #bebebe;
+  --neutral-300: #9d9d9d;
+  --neutral-400: #7d7d7d;
+  --neutral-500: #5c5c5c;
+  --neutral-900: #090909;
+  --stroke: #d9d9d9;
+  --primary-50: #ffebef;
+  --primary-200: #ffb0be;
+  --primary-300: #fe889d;
+  --primary-400: #fe617d;
+  --primary-500: #fe395c;
+  --primary-600: #ce2e4a;
+  --danger: #f33636;
+  --ink-top: #2d2d2d;
+}
+
 @theme inline {
-  --color-surface: #ffffff;
-  --color-surface-neutral: #f5f7fa;
-  --color-surface-neutral-2: #eaecf0;
-  --color-text-primary: #0e121b;
-  --color-text-secondary: #525866;
-  --color-text-tertiary: #99a0ad;
-  --color-stroke-primary: #dbe0e9;
-  --color-brand: #3559e9;
-  --color-brand-light: #c0d5ff;
-  --color-accent-lighter: #ebf1ff;
+  --color-white: var(--white);
+  --color-black: var(--black);
+  --color-base-black: var(--base-black);
+  --color-neutral-50: var(--neutral-50);
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-500: var(--neutral-500);
+  --color-neutral-900: var(--neutral-900);
+  --color-stroke: var(--stroke);
+  --color-primary-50: var(--primary-50);
+  --color-primary-200: var(--primary-200);
+  --color-primary-300: var(--primary-300);
+  --color-primary-400: var(--primary-400);
+  --color-primary-500: var(--primary-500);
+  --color-primary-600: var(--primary-600);
+  --color-danger: var(--danger);
+  --color-ink-top: var(--ink-top);
+
+  /* Aliases used by the scaffold's Toaster / MoreMenu */
+  --color-surface: var(--white);
+  --color-surface-neutral: var(--neutral-50);
+  --color-text-primary: var(--neutral-900);
+  --color-stroke-primary: var(--stroke);
+  --color-brand: var(--primary-600);
+  --color-brand-light: var(--primary-200);
+  --color-accent-lighter: var(--primary-50);
   --color-information: #178c4e;
   --color-information-light: #c2f5da;
   --color-information-lighter: #d6f5e8;
-  --color-error: #de4400;
-  --color-error-light: #f5c5b0;
-  --color-error-lighter: #fcece6;
-  --shadow-field: 0 1px 2px 0 rgb(10 13 20 / 0.05);
+  --color-error: var(--danger);
+  --color-error-light: #fbc2c2;
+  --color-error-lighter: #fdecec;
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-kansas);
+  --font-geist: var(--font-geist);
+
+  --shadow-field: 0 2px 1.5px 0 rgb(0 0 0 / 0.06);
+  --shadow-field-active: 0 0 0 3px rgb(0 0 0 / 0.05), 0 2px 3px 0 rgb(0 0 0 / 0.06);
+  --shadow-btn-primary: 0 0 0 1px var(--primary-600);
+  --shadow-btn-black: 0 0 0 1px var(--black);
+
+  --radius-pill: 99px;
+  --radius-card: 28px;
+}
+
+
+body {
+  background: var(--white);
+  color: var(--neutral-900);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  /* Inter Display = Inter at the display optical size */
+  font-variation-settings: "opsz" 32;
+  letter-spacing: 0;
+}
+
+/* Primary pill button: Figma gradient Primary-400 -> Primary-600 with 1px ring */
+@utility btn-primary {
+  background-image: linear-gradient(to bottom, var(--primary-400), var(--primary-600));
+  box-shadow: 0 0 0 1px var(--primary-600);
+  color: var(--white);
+}
+@utility btn-black {
+  background-image: linear-gradient(to bottom, var(--ink-top), var(--base-black));
+  box-shadow: 0 0 0 1px var(--black);
+  color: var(--neutral-50);
 }
 
 /*
@@ -136,4 +184,10 @@ body {
   input:not([type="checkbox"], [type="radio"], [type="file"], [hidden]):not(:where(div, label) > input) {
     min-height: 44px;
   }
+}
+
+/* Display serif (New Kansas stand-in): soft, non-wonky Fraunces */
+@utility font-display {
+  font-family: var(--font-kansas), Georgia, serif;
+  font-variation-settings: "SOFT" 100, "WONK" 0;
 }

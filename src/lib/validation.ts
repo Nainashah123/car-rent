@@ -37,7 +37,7 @@ export function newPasswordError(value: string): string | undefined {
 
 export function confirmError(password: string, confirm: string): string | undefined {
   if (!confirm) return "Confirm your password.";
-  if (confirm !== password) return "Both passwords must match.";
+  if (confirm !== password) return "Password not matched. Check again";
   return undefined;
 }
 
@@ -47,4 +47,4 @@ export function compact<T extends Record<string, string | undefined>>(errors: T)
 }
 
 /** Remembers the reset email between the reset and confirmation-code steps. */
-export const RESET_EMAIL_KEY = "coder:reset-email";
+export const RESET_EMAIL_KEY = "carent:reset-email";
