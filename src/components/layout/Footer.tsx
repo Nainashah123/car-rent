@@ -22,10 +22,11 @@ export function Footer() {
           {FOOTER_COLUMNS.map((col) => (
             <div key={col.title} className="flex w-24 flex-col items-start gap-4">
               <p className="w-full text-[14px] leading-[1.4] font-semibold lg:text-[16px]">{col.title}</p>
-              <ul className="flex w-full flex-col gap-2.5 text-[14px] leading-[1.2] lg:text-[16px] lg:leading-[1.4]">
+              {/* Below lg each link is a 44px row (touch rule); desktop keeps the Figma 10px rhythm. */}
+              <ul className="flex w-full flex-col text-[14px] leading-[1.2] lg:gap-2.5 lg:text-[16px] lg:leading-[1.4]">
                 {col.links.map((l) => (
                   <li key={l.href}>
-                    <Link href={l.href} className="hover:text-primary-600">
+                    <Link href={l.href} className="flex min-h-11 items-center hover:text-primary-600 lg:inline lg:min-h-0">
                       {l.label}
                     </Link>
                   </li>

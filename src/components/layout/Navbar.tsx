@@ -8,11 +8,15 @@ import { Logo } from "@/components/layout/Logo";
 import { buttonClass } from "@/components/ui/Button";
 import { CALL_CENTER, HELP_LINKS, NAV_LINKS, navKeyFor } from "@/data/nav";
 import { cn } from "@/lib/cn";
+import { useSessionRaw } from "@/lib/session";
 
 /** Figma Navbar (80:23888): desktop 1440×72, mobile 375×72 + 400px menu sheet. */
 export function Navbar() {
   const pathname = usePathname();
   const active = navKeyFor(pathname);
+  // Signed-in (mock session): the Login button becomes Profile.
+  const signedIn = useSessionRaw() !== null;
+  const account = signedIn ? { href: "/profile", label: "Profile" } : { href: "/login", label: "Login" };
   const [menuOpen, setMenuOpen] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false);
   const helpRef = useRef<HTMLDivElement>(null);
@@ -104,8 +108,8 @@ export function Navbar() {
             <IconPhone size={20} stroke={1.5} />
             {CALL_CENTER.label}
           </a>
-          <Link href="/login" className={buttonClass({ variant: "white", size: "md", className: "w-[100px]" })}>
-            Login
+          <Link href={account.href} className={buttonClass({ variant: "white", size: "md", className: "w-[100px]" })}>
+            {account.label}
           </Link>
         </div>
 
@@ -162,9 +166,9 @@ export function Navbar() {
               ))}
             </nav>
             <div className="flex flex-col gap-3">
-              <Link href="/login" className={buttonClass({ variant: "white", size: "sm", className: "w-full" })}>
-                Login
-              </Link>
+              <Link href={account.href} className={buttonClass({ variant: "white", size: "sm", className: "w-full" })}>
+            {account.label}
+          </Link>
               <a href={`tel:${CALL_CENTER.tel}`} className={buttonClass({ variant: "black", size: "sm", className: "w-full" })}>
                 <IconPhone size={18} stroke={1.5} />
                 {CALL_CENTER.label}
