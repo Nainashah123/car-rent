@@ -1,6 +1,6 @@
 # exotic-real-estate
 
-Next.js implementation of the Figma design **"Exotic Real Estate"** (file `{{fileKey}}`, page `{{pageId}}`).
+Next.js implementation of the Figma design **"CARENT - KIT RENT CAR 2"** (file `B5ENtxw4u0iQpz6jfrje1z`, page `{{pageId}}`).
 Built with the `figma-to-nextjs` skill — its checklist is the definition of done for every screen.
 
 ## Stack (verify versions after scaffolding, then fill in)
