@@ -96,11 +96,11 @@ export const SORT_OPTIONS: { value: SortKey; label: string }[] = [
 ];
 
 /**
- * Cars per page. The catalogue has 12 cars; Figma page 1 shows all 12 with
- * pages "1 2 3 …". We use 9 so pagination is real (2 pages) — every row,
- * card and the pager keep the Figma geometry, page 1 just has 3 rows.
+ * Cars per page. Figma page 1 shows all 12 catalogue cars (4 rows desktop,
+ * 6 rows mobile), so 12 matches the design; the pager pages for real as
+ * soon as results exceed 12 and shows disabled Previous/Next on one page.
  */
-export const PAGE_SIZE = 9;
+export const PAGE_SIZE = 12;
 
 export type Driver = "with" | "without";
 
