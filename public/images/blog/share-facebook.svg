@@ -1,0 +1,11 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icon">
+<path id="Vector" d="M7.956 19V10.79H5V7.59H7.956V5.23C7.956 2.49 9.746 1 12.359 1C13.611 1 14.687 1.087 15 1.126V3.988H13.187C11.767 3.988 11.491 4.62 11.491 5.547V7.59H14.881L14.439 10.79H11.491V19H7.956Z" fill="url(#paint0_linear_0_9)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_9" x1="3" y1="1.5" x2="21.723" y2="12.151" gradientUnits="userSpaceOnUse">
+<stop/>
+<stop offset="1"/>
+</linearGradient>
+</defs>
+</svg>
