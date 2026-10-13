@@ -1,12 +1,26 @@
-import { CarCard } from "@/components/cars/CarCard";
-import { CARS } from "@/data/cars";
+import type { Metadata } from "next";
+import { AboutBlurb } from "@/components/home/AboutBlurb";
+import { Faqs } from "@/components/home/Faqs";
+import { Hero } from "@/components/home/Hero";
+import { HowItWorks } from "@/components/home/HowItWorks";
+import { Testimonials } from "@/components/home/Testimonials";
+import { VehicleTypes } from "@/components/home/VehicleTypes";
+import { WhyRent } from "@/components/home/WhyRent";
+import { FAQS } from "@/data/faqs";
 
+export const metadata: Metadata = { title: "Find the Best Car Rental Deals" };
+
+/** Home — Figma desktop 232:21757 (1440×5851), mobile 232:22155 (375×6013). */
 export default function HomePage() {
   return (
-    <div className="mx-auto grid w-full max-w-[816px] grid-cols-2 gap-6 p-4 lg:grid-cols-3">
-      {CARS.slice(0, 6).map((c) => (
-        <CarCard key={c.id} car={c} />
-      ))}
-    </div>
+    <>
+      <Hero />
+      <VehicleTypes />
+      <AboutBlurb />
+      <WhyRent />
+      <HowItWorks />
+      <Faqs items={FAQS} />
+      <Testimonials />
+    </>
   );
 }
